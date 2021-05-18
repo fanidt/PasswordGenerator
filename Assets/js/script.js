@@ -13,6 +13,10 @@ var specialChar = [
   "@",  "%",  "+",  "\\",  "/",  "'",  "!",  "#",  "$",  "^",  "?",  ":",  ",",  ")",  "(",  "}",  "{",  "]",  "[",  "~",  "-",  "_",  "."
 ];
 
+//holds the final password
+var createdPassword = "";
+
+
 
 
 
@@ -24,7 +28,7 @@ function getpasswordData () {
 
   if (passwordLength<12 )
 {
-  alert("A minimum number of 8 characters requried.");
+  alert("A minimum number of 12 characters requried.");
     generatePassword();
   }
   if(passwordLength > 128 ) {
@@ -52,13 +56,14 @@ function getpasswordData () {
 // object storing password data
   var passwordData = {
     passwordLength: passwordLength,
-    includeNumbers: numbers ,
-    includeLowerCase: lowerCases,
-    includeUpperCase: upperCases,
-    includespecial: special
+    numbers: numbers ,
+    lowerCases: lowerCases,
+    upperCases: upperCases,
+    special: special
 
   };
   
+  return passwordData;
 }
 
 
@@ -66,6 +71,40 @@ function getpasswordData () {
 
 
 
+
+function generatePassword()
+{
+// gets the result from getpasswordData (the object) and stores it into a variable
+var passwordHas = getpasswordData();
+ 
+
+// stores the characters that the password can include
+var CharIncluded = [];
+
+if (passwordHas.lowerCases){
+  CharIncluded = CharIncluded.concat(lowerCasesChar);
+}
+
+if (passwordHas.upperCases){
+  CharIncluded = CharIncluded.concat(upperCasesChar);
+}
+if (passwordHas.special){
+  CharIncluded = CharIncluded.concat(specialChar);
+}
+if (passwordHas.numbers){
+  CharIncluded = CharIncluded.concat(numbersChar);
+}
+
+
+
+  for (var i=0; i< passwordLength; i++ ){
+    createdPassword += CharIncluded.charAt(Math.floor(Math.random() * CharIncluded.length));
+
+}
+
+
+
+}
 
 
 
@@ -76,9 +115,6 @@ function getpasswordData () {
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-
-
-
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -88,7 +124,4 @@ function writePassword() {
 
 
 }
-
-getpasswordData();
-
 generateBtn.addEventListener("click", writePassword);
