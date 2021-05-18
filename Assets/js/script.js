@@ -1,15 +1,15 @@
 // numbers array
-var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-//lowercase array
-var lowerCases = [
+var numbersChar = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+//lower case array
+var lowerCasesChar = [
   "a",  "b",  "c", "d",  "e",  "f",  "g",  "h",  "i",  "j",  "k",  "l",  "m",  "n",  "o",  "p",  "q",  "r",  "s",  "t",  "u",  "v",  "w",  "x",  "y",  "z"
 ];
-//uppcase array
-var upperCases = [
+//upper case array
+var upperCasesChar = [
   "A",  "B",  "C",  "D",  "E",  "F",  "G",  "H",  "I",  "J",  "K",  "L",  "M",  "N",  "O",  "P",  "Q",  "R",  "S",  "T",  "U",  "V",  "W",  "X",  "Y",  "Z"
 ];
-// special char array
-var special = [
+// special characters array
+var specialChar = [
   "@",  "%",  "+",  "\\",  "/",  "'",  "!",  "#",  "$",  "^",  "?",  ":",  ",",  ")",  "(",  "}",  "{",  "]",  "[",  "~",  "-",  "_",  "."
 ];
 
@@ -18,7 +18,7 @@ var special = [
 
 // Assignment code here
 
-function passwordData () {
+function getpasswordData () {
 
   var passwordLength = parseInt(prompt("Please enter the number of characters you want for you new password.  It must be more than 12 but less than 128."));
 
@@ -48,7 +48,29 @@ function passwordData () {
 
     alert("the password cannot be created if no characters are selected")
   }
+
+// object storing password data
+  var passwordData = {
+    passwordLength: passwordLength,
+    includeNumbers: numbers ,
+    includeLowerCase: lowerCases,
+    includeUpperCase: upperCases,
+    includespecial: special
+
+  };
+  
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Get references to the #generate element
@@ -67,6 +89,6 @@ function writePassword() {
 
 }
 
-passwordData();
+getpasswordData();
 
 generateBtn.addEventListener("click", writePassword);
