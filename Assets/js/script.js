@@ -13,8 +13,7 @@ var specialChar = [
   "@",  "%",  "+",  "\\",  "/",  "'",  "!",  "#",  "$",  "^",  "?",  ":",  ",",  ")",  "(",  "}",  "{",  "]",  "[",  "~",  "-",  "_",  "."
 ];
 
-//holds the final password
-var createdPassword = "";
+
 
 
 
@@ -68,7 +67,11 @@ function getpasswordData () {
 
 
 
-
+function random(Array){
+  var randomChar = Math.floor(Math.random() * Array.length);
+  var selectedChar = Array[randomChar];
+  return selectedChar
+}
 
 
 
@@ -77,6 +80,8 @@ function generatePassword()
 // gets the result from getpasswordData (the object) and stores it into a variable
 var passwordHas = getpasswordData();
  
+//holds the final password
+var createdPassword = [];
 
 // stores the characters that the password can include
 var CharIncluded = [];
@@ -95,21 +100,29 @@ if (passwordHas.numbers){
   CharIncluded = CharIncluded.concat(numbersChar);
 }
 
+for (var i=0; i< passwordHas.passwordLength; i++ ) {
 
+  var a = random(CharIncluded);
 
-  for (var i=0; i< passwordLength; i++ ){
-    createdPassword += CharIncluded.charAt(Math.floor(Math.random() * CharIncluded.length));
-
+    
+    createdPassword.push(a);
 }
 
+return createdPassword.join("");
 
+/*function Random(){
+  for (var i=0; i< passwordHas.passwordLength; i++ ){
+    var a = CharIncluded.charAt(Math.floor(Math.random() * CharIncluded.length));
 
 }
+createdPassword.push(a);
+return createdPassword.join("");
+}
 
+return Random.createdPassword;
 
-
-
-
+*/
+}
 
 
 // Get references to the #generate element
